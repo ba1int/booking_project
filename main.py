@@ -8,11 +8,6 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 import helper
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> parent of 685e3f5 (get_non_empty_input: hasznalasa, foglalasnak fontos, hogy mindenkepp legyen input a hotel nevhez, szobaszamhoz)
 class Szoba(ABC):
     alap_ar = 10000
 
@@ -97,7 +92,7 @@ class FoglalasiRendszer:
         foglalas = Foglalas(szalloda, szoba, datum)
         self.foglalasok.append(foglalas)
         print(f"Foglalás létrehozva. Ár: {foglalas.ar()} Ft")
-        
+
     def foglalas_lemondasa(self, szalloda_nev, szobaszam, datum):
         foglalas = self._foglalas_kereses(szalloda_nev, szobaszam, datum)
         if foglalas is None:
@@ -172,7 +167,7 @@ while True:
     if any(s.szalloda_nev == szalloda_nev for s in foglalasi_rendszer.szallodak):
         print(f"Már létezik szálloda ezzel a névvel: {szalloda_nev}. Kérlek válassz másikat.")
         continue
-    
+
     szalloda = Szalloda(szalloda_nev)
 
     while True:
@@ -203,11 +198,9 @@ while True:
     valasztas = input("Adja meg a választását (1-4): ")
 
     if valasztas == "1":
-<<<<<<< HEAD
         datum_str = helper.get_non_empty_input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
-=======
+
         datum_str = input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
->>>>>>> parent of 685e3f5 (get_non_empty_input: hasznalasa, foglalasnak fontos, hogy mindenkepp legyen input a hotel nevhez, szobaszamhoz)
         datum = datetime.strptime(datum_str, "%Y-%m-%d").date()
         foglalasi_rendszer.foglalhato_szobak_listazasa(datum)
 
@@ -215,13 +208,11 @@ while True:
         szobaszam = int(input("Adja meg a szoba számát: "))
         foglalasi_rendszer.szoba_foglalas(szalloda_nev, szobaszam, datum)
     elif valasztas == "2":
-<<<<<<< HEAD
         szalloda_nev = helper.get_non_empty_input("Adja meg a szálloda nevét: ")
         szobaszam = int(helper.get_non_empty_input("Adja meg a szoba számát: "))
-=======
+
         szalloda_nev = input("Adja meg a szálloda nevét: ")
         szobaszam = int(input("Adja meg a szoba számát: "))
->>>>>>> parent of 685e3f5 (get_non_empty_input: hasznalasa, foglalasnak fontos, hogy mindenkepp legyen input a hotel nevhez, szobaszamhoz)
         datum_str = input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
         datum = datetime.strptime(datum_str, "%Y-%m-%d").date()
         foglalasi_rendszer.foglalas_lemondasa(szalloda_nev, szobaszam, datum)

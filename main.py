@@ -23,7 +23,7 @@ class EgyAgyasSzoba(Szoba):
 
 class KetAgyasSzoba(Szoba):
     def ar(self):
-        return Szoba.alap_ar * 1.5
+        return int(Szoba.alap_ar * 1.5)
 
 class Szalloda:
     def __init__(self, szalloda_nev):
@@ -115,8 +115,7 @@ class FoglalasiRendszer:
             print(f"Szálloda: {szalloda.szalloda_nev}")
             for szoba in szalloda.szobak:
                 if not self._foglalt_e(szalloda, szoba, datum):
-                    print(
-                        f"  Szoba: {szoba.szobaszam}, Típus: {'Kétágyas' if isinstance(szoba, KetAgyasSzoba) else 'Egyágyas'}, Ár: {szoba.ar()} Ft")
+                    print(f"Szoba: {szoba.szobaszam}, Típus: {'Kétágyas' if isinstance(szoba, KetAgyasSzoba) else 'Egyágyas'}, Ár: {szoba.ar()} Ft")
             print()
     def _szalloda_kereses(self, szalloda_nev):
         for szalloda in self.szallodak:
@@ -164,6 +163,10 @@ while True:
     if szalloda_nev == "":
         break
 
+    if any(s.szalloda_nev == szalloda_nev for s in foglalasi_rendszer.szallodak):
+        print(f"Már létezik szálloda ezzel a névvel: {szalloda_nev}. Kérlek válassz másikat.")
+        continue
+    
     szalloda = Szalloda(szalloda_nev)
 
     while True:

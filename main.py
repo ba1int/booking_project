@@ -62,7 +62,12 @@ class FoglalasiRendszer:
 
         return None
     def szalloda_hozzaadasa(self, szalloda):
+        # nm engedi h k;t ugyanolyan nevu szalloda legyen
+        if any(s.szalloda_nev == szalloda.szalloda_nev for s in self.szallodak):
+            print(f"Már létezik szálloda ezzel a névvel: {szalloda.szalloda_nev}. Kérlek válassz másikat.")
+            return
         self.szallodak.append(szalloda)
+        print(f"Szálloda hozzáadva: {szalloda.szalloda_nev}")
 
     def szoba_foglalas(self, szalloda_nev, szobaszam, datum):
         szalloda = self._szalloda_kereses(szalloda_nev)

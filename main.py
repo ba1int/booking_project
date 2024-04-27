@@ -6,7 +6,6 @@
 #####################################################
 from abc import ABC, abstractmethod
 from datetime import datetime
-import separator
 
 class Szoba(ABC):
     alap_ar = 10000

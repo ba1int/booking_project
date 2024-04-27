@@ -6,14 +6,8 @@
 #####################################################
 from abc import ABC, abstractmethod
 from datetime import datetime
+import helper
 
-# gondoskodik ez a resz arrol, hogy a felhasznalo ne hagyjon ures mezot
-def get_non_empty_input(prompt):
-    value = input(prompt)
-    while value.strip() == "":  # Eltávolítja a szóközöket az elejéről és a végéről, majd ellenőrzi, hogy üres-e
-        print("Ez a mező nem lehet üres. Kérem, próbálja újra.")
-        value = input(prompt)
-    return value
 
 
 class Szoba(ABC):
@@ -208,7 +202,7 @@ while True:
     # get_non_empty_input hasznalata, mert ha a user nem ir be semmit, akkor crashel a cucc
 
     if valasztas == "1":
-        datum_str = get_non_empty_input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
+        datum_str = helper.get_non_empty_input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
         datum = datetime.strptime(datum_str, "%Y-%m-%d").date()
         foglalasi_rendszer.foglalhato_szobak_listazasa(datum)
 
@@ -216,8 +210,8 @@ while True:
         szobaszam = int(input("Adja meg a szoba számát: "))
         foglalasi_rendszer.szoba_foglalas(szalloda_nev, szobaszam, datum)
     elif valasztas == "2":
-        szalloda_nev = get_non_empty_input("Adja meg a szálloda nevét: ")
-        szobaszam = int(get_non_empty_input("Adja meg a szoba számát: "))
+        szalloda_nev = helper.get_non_empty_input("Adja meg a szálloda nevét: ")
+        szobaszam = int(helper.get_non_empty_input("Adja meg a szoba számát: "))
         datum_str = input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
         datum = datetime.strptime(datum_str, "%Y-%m-%d").date()
         foglalasi_rendszer.foglalas_lemondasa(szalloda_nev, szobaszam, datum)

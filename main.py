@@ -6,6 +6,7 @@
 #####################################################
 from abc import ABC, abstractmethod
 from datetime import datetime
+import separator
 
 class Szoba(ABC):
     alap_ar = 10000
@@ -91,7 +92,7 @@ class FoglalasiRendszer:
         foglalas = Foglalas(szalloda, szoba, datum)
         self.foglalasok.append(foglalas)
         print(f"Foglalás létrehozva. Ár: {foglalas.ar()} Ft")
-
+        
     def foglalas_lemondasa(self, szalloda_nev, szobaszam, datum):
         foglalas = self._foglalas_kereses(szalloda_nev, szobaszam, datum)
         if foglalas is None:

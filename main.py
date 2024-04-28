@@ -24,7 +24,7 @@ class EgyAgyasSzoba(Szoba):
 
 class KetAgyasSzoba(Szoba):
     def ar(self):
-        return int(Szoba.alap_ar * 1.5)
+        return round(Szoba.alap_ar * 1.5)
 
 class Szalloda:
     def __init__(self, szalloda_nev):
@@ -198,8 +198,6 @@ while True:
     valasztas = input("Adja meg a választását (1-4): ")
 
     if valasztas == "1":
-        datum_str = helper.get_non_empty_input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
-
         datum_str = input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
         datum = datetime.strptime(datum_str, "%Y-%m-%d").date()
         foglalasi_rendszer.foglalhato_szobak_listazasa(datum)
@@ -207,17 +205,19 @@ while True:
         szalloda_nev = input("Adja meg a szálloda nevét: ")
         szobaszam = int(input("Adja meg a szoba számát: "))
         foglalasi_rendszer.szoba_foglalas(szalloda_nev, szobaszam, datum)
-    elif valasztas == "2":
-        szalloda_nev = helper.get_non_empty_input("Adja meg a szálloda nevét: ")
-        szobaszam = int(helper.get_non_empty_input("Adja meg a szoba számát: "))
 
+    elif valasztas == "2":
+        szalloda_nev = input("Adja meg a szálloda nevét: ")
+        szobaszam = int(input("Adja meg a szoba számát: "))
         szalloda_nev = input("Adja meg a szálloda nevét: ")
         szobaszam = int(input("Adja meg a szoba számát: "))
         datum_str = input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
         datum = datetime.strptime(datum_str, "%Y-%m-%d").date()
         foglalasi_rendszer.foglalas_lemondasa(szalloda_nev, szobaszam, datum)
+
     elif valasztas == "3":
         foglalasi_rendszer.foglalasok_listazasa()
+
     elif valasztas == "4":
         print("Köszönjük, hogy használta a foglalási rendszert. Viszontlátásra!")
         break

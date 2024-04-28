@@ -1,12 +1,8 @@
-#####################################################
-#                                                   #
-#        Contact: @ba1int                           #
-#        Date: 20240427-112823                      #
-#                                                   #
-#####################################################
+
+# ++++ Contact: @ba1int ++++
+
 from abc import ABC, abstractmethod
 from datetime import datetime
-import helper
 
 class Szoba(ABC):
     alap_ar = 10000
@@ -140,10 +136,10 @@ class FoglalasiRendszer:
                 return True
         return False
 
-# Példa használat
+
 foglalasi_rendszer = FoglalasiRendszer()
 
-# Alapértelmezett szálloda és szobák hozzáadása
+# Alapértelmezett szálloda és szobák hozzáadása -- az alap szálloda neve "0"
 alap_szalloda = Szalloda("0")
 alap_szalloda.szoba_hozzaadasa(EgyAgyasSzoba(201))
 alap_szalloda.szoba_hozzaadasa(KetAgyasSzoba(102))

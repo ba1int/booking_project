@@ -195,7 +195,11 @@ while True:
 
     if valasztas == "1":
         datum_str = input("Adja meg a foglalás dátumát (ÉÉÉÉ-HH-NN): ")
-        datum = datetime.strptime(datum_str, "%Y-%m-%d").date()
+        try:
+            datum = datetime.strptime(datum_str, "%Y-%m-%d").date()
+        except ValueError:
+            print("Hibás dátum formátum. Kérlek próbáld újra!")
+            continue
         foglalasi_rendszer.foglalhato_szobak_listazasa(datum)
 
         szalloda_nev = input("Adja meg a szálloda nevét: ")

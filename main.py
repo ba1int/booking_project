@@ -58,6 +58,25 @@ class FoglalasiRendszer:
                 return foglalas
 
         return None
+
+    def _alapertelmezett_szoba_foglalas(self, szalloda_nev, szobaszam, datum):
+        szalloda = self._szalloda_kereses(szalloda_nev)
+        if szalloda is None:
+            return
+
+        szoba = self._szoba_kereses(szalloda, szobaszam)
+        if szoba is None:
+            return
+
+        if not self._datum_ellenorzes(datum):
+            return
+
+        if self._foglalt_e(szalloda, szoba, datum):
+            return
+
+        foglalas = Foglalas(szalloda, szoba, datum)
+        self.foglalasok.append(foglalas)
+
     def szalloda_hozzaadasa(self, szalloda):
         # nm engedi h k;t ugyanolyan nevu szalloda legyen
         if any(s.szalloda_nev == szalloda.szalloda_nev for s in self.szallodak):
@@ -147,12 +166,11 @@ alap_szalloda.szoba_hozzaadasa(EgyAgyasSzoba(303))
 foglalasi_rendszer.szalloda_hozzaadasa(alap_szalloda)
 
 # Alapértelmezett foglalások hozzáadása
-foglalasi_rendszer.szoba_foglalas("0", 201, datetime(2024, 6, 15).date())
-foglalasi_rendszer.szoba_foglalas("0", 102, datetime(2024, 6, 20).date())
-foglalasi_rendszer.szoba_foglalas("0", 303, datetime(2024, 6, 25).date())
-foglalasi_rendszer.szoba_foglalas("0", 201, datetime(2024, 7, 1).date())
-foglalasi_rendszer.szoba_foglalas("0", 102, datetime(2024, 7, 5).date())
-
+foglalasi_rendszer._alapertelmezett_szoba_foglalas("0", 201, datetime(2024, 6, 15).date())
+foglalasi_rendszer._alapertelmezett_szoba_foglalas("0", 102, datetime(2024, 6, 20).date())
+foglalasi_rendszer._alapertelmezett_szoba_foglalas("0", 303, datetime(2024, 6, 25).date())
+foglalasi_rendszer._alapertelmezett_szoba_foglalas("0", 201, datetime(2024, 7, 1).date())
+foglalasi_rendszer._alapertelmezett_szoba_foglalas("0", 102, datetime(2024, 7, 5).date())
 # Felhasználói adatbekérés
 print("\nÜdv a feltöltési promptban! Adja meg a szállodákat és szobákat.")
 while True:
